@@ -201,6 +201,22 @@ COMPILERS = {
         run=[TempFile("binary")],
         kattis="Rust",
     ),
+    "java": lambda: CompilerInfo(
+        compile=None,
+        # This will recompile the solution for each test...
+        run=[
+            "java",
+            "-Dfile.encoding=UTF-8",
+            "-XX:+UseSerialGC",
+            "-Xss64m",
+            "-Xms1g",
+            "-Xmx1g",
+            "--source",
+            "11",
+            InputFile(),
+        ],
+        kattis="Java",
+    ),
     "php": lambda: CompilerInfo(
         compile=[
             "php",
@@ -246,6 +262,7 @@ COMPILERS = {
 DEFAULT_COMPILERS = {
     ".c": "gcc",
     ".cpp": "g++",
+    ".java": "java",
     ".ml": "ocaml",
     ".rs": "rust",
     ".php": "php",
